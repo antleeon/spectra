@@ -1,0 +1,14 @@
+<key>com.apple.developer.networking.vpn.api</key>
+<true/>
+<key>com.apple.developer.networking.wifi-info</key>
+<true/>
+<key>com.apple.developer.networking.multipeer</key>
+<true/>
+<key>com.apple.developer.networking.multipath</key>
+<true/>
+<key>com.apple.developer.networking.networkextension</key>
+<true/>
+<key>com.apple.developer.networking.vpn.configuration</key>
+<true/>
+<key>com.apple.developer.networking.wifi-info</key>
+<true/>
