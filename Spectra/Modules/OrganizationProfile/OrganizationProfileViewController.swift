@@ -19,7 +19,7 @@ class OrganizationProfileViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         
         // Setup avatar image view
         avatarImageView.contentMode = .scaleAspectFill
@@ -28,8 +28,11 @@ class OrganizationProfileViewController: UIViewController {
         
         // Setup labels
         nameLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        nameLabel.textColor = .spectraText
         nicknameLabel.font = UIFont.systemFont(ofSize: 16)
+        nicknameLabel.textColor = .spectraAccent
         bioLabel.font = UIFont.systemFont(ofSize: 14)
+        bioLabel.textColor = .spectraSecondaryText
         view.addSubview(nameLabel)
         view.addSubview(nicknameLabel)
         view.addSubview(bioLabel)
@@ -37,16 +40,21 @@ class OrganizationProfileViewController: UIViewController {
         // Setup events table view
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
+        eventsTableView.backgroundColor = .spectraBackground
         view.addSubview(eventsTableView)
         
         // Setup edit button
         editButton.setTitle("Edit", for: .normal)
-        editButton.setTitleColor(.blue, for: .normal)
+        editButton.setTitleColor(.spectraAccent, for: .normal)
+        editButton.backgroundColor = .spectraSurface
+        editButton.layer.cornerRadius = 8
         editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         view.addSubview(editButton)
         
         // Layout setup (using frames for simplicity)
         layoutUI()
+        
+        overrideUserInterfaceStyle = .dark
     }
     
     private func layoutUI() {
@@ -78,6 +86,8 @@ extension OrganizationProfileViewController: UITableViewDelegate, UITableViewDat
         let cell = UITableViewCell()
         let event = organization?.events[indexPath.row]
         cell.textLabel?.text = event?.title
+        cell.backgroundColor = .spectraSurface
+        cell.textLabel?.textColor = .spectraText
         return cell
     }
 }

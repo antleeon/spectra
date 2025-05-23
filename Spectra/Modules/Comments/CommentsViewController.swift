@@ -17,16 +17,19 @@ class CommentsViewController: UIViewController {
     
     private func setupUI() {
         title = "Comments"
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         
         setupTableView()
         setupInputField()
+        overrideUserInterfaceStyle = .dark
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CommentCell")
+        tableView.backgroundColor = .spectraBackground
+        tableView.separatorColor = .spectraSurface
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +44,14 @@ class CommentsViewController: UIViewController {
     private func setupInputField() {
         inputTextField.placeholder = "Add a comment..."
         inputTextField.borderStyle = .roundedRect
+        inputTextField.backgroundColor = .spectraSurface
+        inputTextField.textColor = .spectraText
+        inputTextField.attributedPlaceholder = NSAttributedString(string: "Add a comment...", attributes: [.foregroundColor: UIColor.spectraSecondaryText])
         
         sendButton.setTitle("Send", for: .normal)
+        sendButton.setTitleColor(.spectraText, for: .normal)
+        sendButton.backgroundColor = .spectraAccent
+        sendButton.layer.cornerRadius = 8
         sendButton.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [inputTextField, sendButton])
@@ -89,6 +98,8 @@ extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath)
         let comment = comments[indexPath.row]
         cell.textLabel?.text = "\(comment.username) \(comment.nickname): \(comment.text)"
+        cell.backgroundColor = .spectraSurface
+        cell.textLabel?.textColor = .spectraText
         return cell
     }
 }

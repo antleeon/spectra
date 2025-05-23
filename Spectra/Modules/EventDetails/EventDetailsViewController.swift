@@ -20,15 +20,45 @@ class EventDetailsViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = .spectraText
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.textColor = .spectraSecondaryText
+        dateLabel.font = UIFont.systemFont(ofSize: 16)
+        
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationLabel.textColor = .spectraSecondaryText
+        locationLabel.font = UIFont.systemFont(ofSize: 16)
+        
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.textColor = .spectraText
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.numberOfLines = 0
+        
         goingButton.translatesAutoresizingMaskIntoConstraints = false
+        goingButton.setTitle("Пойду", for: .normal)
+        goingButton.setTitleColor(.spectraText, for: .normal)
+        goingButton.backgroundColor = .spectraAccent
+        goingButton.layer.cornerRadius = 8
+        goingButton.addTarget(self, action: #selector(goingButtonTapped), for: .touchUpInside)
+        
         commentsButton.translatesAutoresizingMaskIntoConstraints = false
+        commentsButton.setTitle("Комментарии", for: .normal)
+        commentsButton.setTitleColor(.spectraAccent, for: .normal)
+        commentsButton.backgroundColor = .spectraSurface
+        commentsButton.layer.cornerRadius = 8
+        commentsButton.addTarget(self, action: #selector(commentsButtonTapped), for: .touchUpInside)
+        
         shareButton.translatesAutoresizingMaskIntoConstraints = false
+        shareButton.setTitle("Поделиться", for: .normal)
+        shareButton.setTitleColor(.spectraAccent, for: .normal)
+        shareButton.backgroundColor = .spectraSurface
+        shareButton.layer.cornerRadius = 8
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         
         view.addSubview(titleLabel)
         view.addSubview(dateLabel)
@@ -63,18 +93,7 @@ class EventDetailsViewController: UIViewController {
             shareButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
-        // Configure buttons
-        goingButton.setTitle("Пойду", for: .normal)
-        goingButton.setTitleColor(.systemBlue, for: .normal)
-        goingButton.addTarget(self, action: #selector(goingButtonTapped), for: .touchUpInside)
-        
-        commentsButton.setTitle("Комментарии", for: .normal)
-        commentsButton.setTitleColor(.systemBlue, for: .normal)
-        commentsButton.addTarget(self, action: #selector(commentsButtonTapped), for: .touchUpInside)
-        
-        shareButton.setTitle("Поделиться", for: .normal)
-        shareButton.setTitleColor(.systemBlue, for: .normal)
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        overrideUserInterfaceStyle = .dark
     }
     
     @objc private func goingButtonTapped() {
