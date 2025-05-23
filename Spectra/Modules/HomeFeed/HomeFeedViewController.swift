@@ -13,17 +13,21 @@ class HomeFeedViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         title = "Home Feed"
         
         setupTableView()
         setupNavigationBar()
+        
+        overrideUserInterfaceStyle = .dark
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "EventCell")
+        tableView.backgroundColor = .spectraBackground
+        tableView.separatorColor = .spectraSurface
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +41,7 @@ class HomeFeedViewController: UIViewController {
     
     private func setupNavigationBar() {
         let filterButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
+        filterButton.tintColor = .spectraAccent
         navigationItem.rightBarButtonItem = filterButton
     }
     
@@ -56,6 +61,8 @@ extension HomeFeedViewController: UITableViewDelegate, UITableViewDataSource {
         if let event = presenter?.event(at: indexPath.row) {
             cell.textLabel?.text = event.title
         }
+        cell.backgroundColor = .spectraSurface
+        cell.textLabel?.textColor = .spectraText
         return cell
     }
     

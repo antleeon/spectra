@@ -19,7 +19,7 @@ class UserProfileViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         
         // Setup avatarImageView
         avatarImageView.contentMode = .scaleAspectFill
@@ -28,34 +28,42 @@ class UserProfileViewController: UIViewController {
         
         // Setup nameLabel
         nameLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        nameLabel.textColor = .spectraText
         view.addSubview(nameLabel)
         
         // Setup nicknameLabel
         nicknameLabel.font = UIFont.systemFont(ofSize: 16)
-        nicknameLabel.textColor = .gray
+        nicknameLabel.textColor = .spectraAccent
         view.addSubview(nicknameLabel)
         
         // Setup bioLabel
         bioLabel.font = UIFont.systemFont(ofSize: 14)
         bioLabel.numberOfLines = 0
+        bioLabel.textColor = .spectraSecondaryText
         view.addSubview(bioLabel)
         
         // Setup tagsLabel
         tagsLabel.font = UIFont.systemFont(ofSize: 14)
+        tagsLabel.textColor = .spectraAccent
         view.addSubview(tagsLabel)
         
         // Setup eventsTableView
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
+        eventsTableView.backgroundColor = .spectraBackground
         view.addSubview(eventsTableView)
         
         // Setup editButton
         editButton.setTitle("Edit", for: .normal)
-        editButton.setTitleColor(.blue, for: .normal)
+        editButton.setTitleColor(.spectraAccent, for: .normal)
+        editButton.backgroundColor = .spectraSurface
+        editButton.layer.cornerRadius = 8
         editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         view.addSubview(editButton)
         
         // Layout code here (using Auto Layout or frames)
+        
+        overrideUserInterfaceStyle = .dark
     }
     
     @objc private func editButtonTapped() {
@@ -85,6 +93,8 @@ extension UserProfileViewController: UITableViewDelegate, UITableViewDataSource 
         if let event = presenter?.upcomingEvent(at: indexPath.row) {
             cell.textLabel?.text = event.title
         }
+        cell.backgroundColor = .spectraSurface
+        cell.textLabel?.textColor = .spectraText
         return cell
     }
 }

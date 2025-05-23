@@ -22,28 +22,32 @@ class AddEventViewController: UIViewController {
     
     // MARK: - Setup UI
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         title = "Add Event"
-        
-        // Setup UI elements
+
         setupTextField(titleTextField, placeholder: "Event Title")
         setupTextField(typeTextField, placeholder: "Event Type")
         setupImageView(photoImageView)
         setupTextField(locationTextField, placeholder: "Location")
         setupTextField(dateTextField, placeholder: "Date")
         setupTextView(descriptionTextView)
-        
+
         publishButton.setTitle("Publish", for: .normal)
-        publishButton.backgroundColor = .systemBlue
+        publishButton.backgroundColor = .spectraAccent
+        publishButton.setTitleColor(.spectraText, for: .normal)
+        publishButton.layer.cornerRadius = 8
         publishButton.addTarget(self, action: #selector(publishEvent), for: .touchUpInside)
-        
-        // Layout the UI elements
+
         layoutUI()
+        overrideUserInterfaceStyle = .dark
     }
     
     private func setupTextField(_ textField: UITextField, placeholder: String) {
         textField.placeholder = placeholder
         textField.borderStyle = .roundedRect
+        textField.backgroundColor = .spectraSurface
+        textField.textColor = .spectraText
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.spectraSecondaryText])
         view.addSubview(textField)
     }
     
@@ -54,7 +58,9 @@ class AddEventViewController: UIViewController {
     }
     
     private func setupTextView(_ textView: UITextView) {
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.backgroundColor = .spectraSurface
+        textView.textColor = .spectraText
+        textView.layer.borderColor = UIColor.spectraSecondaryText.cgColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 5.0
         view.addSubview(textView)

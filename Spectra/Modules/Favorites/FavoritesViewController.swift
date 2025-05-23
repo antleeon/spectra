@@ -13,13 +13,15 @@ class FavoritesViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .spectraBackground
         title = "Favorites"
         
         favoritesTableView = UITableView()
         favoritesTableView.delegate = self
         favoritesTableView.dataSource = self
         favoritesTableView.register(FavoriteEventCell.self, forCellReuseIdentifier: "FavoriteEventCell")
+        favoritesTableView.backgroundColor = .spectraBackground
+        favoritesTableView.separatorColor = .spectraSurface
         
         view.addSubview(favoritesTableView)
         favoritesTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -29,6 +31,8 @@ class FavoritesViewController: UIViewController {
             favoritesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             favoritesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        overrideUserInterfaceStyle = .dark
     }
 }
 
@@ -46,6 +50,8 @@ extension FavoritesViewController: UITableViewDataSource {
         if let event = presenter?.favoriteEvent(at: indexPath.row) {
             cell.configure(with: event)
         }
+        cell.backgroundColor = .spectraSurface
+        cell.textLabel?.textColor = .spectraText
         return cell
     }
 }
@@ -54,5 +60,7 @@ class FavoriteEventCell: UITableViewCell {
     // Custom cell implementation
     func configure(with event: Event) {
         // Configure the cell with event data
+        self.backgroundColor = .spectraSurface
+        self.textLabel?.textColor = .spectraText
     }
 }
